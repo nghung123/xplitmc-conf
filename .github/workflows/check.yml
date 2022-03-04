@@ -3,9 +3,6 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        java: [11, 8]
     steps:
     - uses: actions/checkout@v2
     - name: validate files
