@@ -23,7 +23,7 @@ settings:
   track-plugin-scoreboards: false
   fix-entity-position-desync: true
   suggest-player-names-when-null-tab-completions: true
-  use-alternative-luck-formula: false
+  use-alternative-luck-formula: true
   chunk-tasks-per-tick: 1000
   player-auto-save-rate: -1
   max-player-auto-save-per-tick: -1
@@ -50,19 +50,19 @@ settings:
     recipe-spam-increment: 1
     recipe-spam-limit: 20
   book-size:
-    page-max: 2560
+    page-max: 2048
     total-multiplier: 0.98
   console:
     enable-brigadier-highlighting: true
     enable-brigadier-completions: true
   item-validation:
-    display-name: 8192
-    loc-name: 8192
-    lore-line: 8192
+    display-name: 4096
+    loc-name: 4096
+    lore-line: 4096
     book:
-      title: 8192
-      author: 8192
-      page: 16384
+      title: 3072
+      author: 3072
+      page: 4096
   velocity-support:
     enabled: false
     online-mode: false
@@ -70,15 +70,15 @@ settings:
   async-chunks:
     threads: -1
 messages:
-  no-permission: '&cI''m sorry, but you do not have permission to perform this command.
-    Please contact the server administrators if you believe that this is in error.'
+  no-permission: Unknown command. Type "/help" for help.
   kick:
     authentication-servers-down: ''
     connection-throttle: Connection throttled! Please wait before reconnecting.
     flying-player: Flying is not enabled on this server
     flying-vehicle: Flying is not enabled on this server
 timings:
-  enabled: true
+  # no
+  enabled: false
   really-enabled: false
   verbose: true
   server-name-privacy: false
@@ -92,14 +92,16 @@ timings:
 world-settings:
   default:
     baby-zombie-movement-modifier: 0.5
-    optimize-explosions: false
+    optimize-explosions: true
     disable-teleportation-suffocation-check: false
     fixed-chunk-inhabited-time: -1
     use-vanilla-world-scoreboard-name-coloring: false
     remove-corrupt-tile-entities: false
     experience-merge-max-value: -1
-    max-auto-save-chunks-per-tick: 24
+    max-auto-save-chunks-per-tick: 6
     count-all-mobs-for-spawning: false
+    # if only i kno hwo to port Pufferfish's async mob spawning
+    # experienced tps drop sth w this (?)
     per-player-mob-spawns: false
     should-remove-dragon: false
     ender-dragons-death-always-places-dragon-egg: false
@@ -107,28 +109,29 @@ world-settings:
     falling-block-height-nerf: 0
     tnt-entity-height-nerf: 0
     filter-nbt-data-from-spawn-eggs-and-related: true
-    max-entity-collisions: 8
+    max-entity-collisions: 4
     disable-creeper-lingering-effect: false
     duplicate-uuid-resolver: saferegen
     duplicate-uuid-saferegen-delete-range: 32
     phantoms-do-not-spawn-on-creative-players: true
     phantoms-only-attack-insomniacs: true
     update-pathfinding-on-block-update: true
-    fix-wither-targeting-bug: false
+    fix-wither-targeting-bug: true
     map-item-frame-cursor-limit: 128
     seed-based-feature-search: true
     seed-based-feature-search-loads-chunks: true
     water-over-lava-flow-speed: 5
     grass-spread-tick-rate: 1
-    use-faster-eigencraft-redstone: false
+    # wont try to port alt curr...
+    use-faster-eigencraft-redstone: true
     keep-spawn-loaded: true
     disable-thunder: false
     skeleton-horse-thunder-spawn-chance: 0.01
     disable-ice-and-snow: false
-    keep-spawn-loaded-range: 10
+    keep-spawn-loaded-range: 3
     armor-stands-do-collision-entity-lookups: true
     nether-ceiling-void-damage-height: 0
-    prevent-moving-into-unloaded-chunks: false
+    prevent-moving-into-unloaded-chunks: true
     only-players-collide: false
     allow-vehicle-collisions: true
     allow-non-player-entities-on-scoreboards: false
@@ -144,11 +147,13 @@ world-settings:
     spawner-nerfed-mobs-should-jump: false
     zombies-target-turtle-eggs: true
     delay-chunk-unloads-by: 10s
-    non-player-arrow-despawn-rate: -1
-    creative-arrow-despawn-rate: -1
+    # its lower so it should still do, it doesnt do that much anyways
+    # also y would i miss the opputurnity? :)
+    non-player-arrow-despawn-rate: 727
+    creative-arrow-despawn-rate: 727
     entities-target-with-follow-range: false
     zombie-villager-infection-chance: -1.0
-    mob-spawner-tick-rate: 1
+    mob-spawner-tick-rate: 3
     all-chunks-are-slime-chunks: false
     armor-stands-tick: true
     show-sign-click-command-failure-msgs-to-player: false
@@ -162,7 +167,7 @@ world-settings:
       scan-for-legacy-ender-dragon: true
       disable-pillager-patrols: false
       fix-curing-zombie-villager-discount-exploit: true
-      disable-chest-cat-detection: false
+      disable-chest-cat-detection: true
       nerf-pigmen-from-nether-portals: false
       disable-end-credits: false
       disable-player-crits: false
@@ -194,8 +199,8 @@ world-settings:
       MinimumTicks: 100
       MaximumTicks: 600
     despawn-ranges:
-      soft: 32
-      hard: 128
+      soft: 28
+      hard: 96
     frosted-ice:
       enabled: true
       delay:
@@ -217,7 +222,8 @@ world-settings:
         COBBLESTONE: 300
     hopper:
       cooldown-when-full: true
-      disable-move-event: false
+      # There wont be any claiming plugin in this server.
+      disable-move-event: true
     spawn-limits:
       monsters: -1
       animals: -1
@@ -241,33 +247,51 @@ world-settings:
       - NORMAL
       - HARD
     anti-xray:
-      enabled: false
-      engine-mode: 1
-      max-chunk-section-index: 3
+      # wont be running RayTraceAntiXray on this thing...
+      # credit some ref from 
+      # https://gist.github.com/stonar96/ba18568bd91e5afd590e8038d14e245e
+      enabled: true
+      engine-mode: 2
+      chunk-edge-mode: 2
+      max-chunk-section-index: 2
       update-radius: 2
       lava-obscures: false
       use-permission: false
       hidden-blocks:
+      # add air here such that many holes are generated.
+      # this works well against cave finders
+      # but cause client FPS drops for all players. Yep.
+      - air
+      - diamond_ore
+      - emerald_ore
       - gold_ore
       - iron_ore
-      - coal_ore
       - lapis_ore
-      - mossy_cobblestone
-      - obsidian
-      - chest
-      - diamond_ore
       - redstone_ore
-      - clay
-      - emerald_ore
-      - ender_chest
       replacement-blocks:
-      - stone
-      - oak_planks
+      - stones
     viewdistances:
-      no-tick-view-distance: -1
+      no-tick-view-distance: 6
     unsupported-settings:
       fix-invulnerable-end-crystal-exploit: true
     squid-spawn-height:
       maximum: 0.0
     generator-settings:
       flat-bedrock: false
+  world_nether:
+    anti-xray:
+      max-chunk-section-index: 7
+      hidden-blocks:
+      - ancient_debris
+      - bone_block
+      - glowstone
+      - magma_block
+      - nether_bricks
+      - nether_gold_ore
+      - nether_quartz_ore
+      - polished_blackstone_bricks
+      replacement-blocks:
+      - netherrack
+  world_the_end:
+    anti-xray:
+      enabled: false
