@@ -1,0 +1,5 @@
+cache
+logs
+*.jar
+usercache.json
+world*
