@@ -5,7 +5,7 @@ delay-chunkunloads-by: 5
 use-new-light-engine: true
 config-version-please-do-not-modify-me: 2
 packet-limiter:
-  kick-message: '&cSent too many packets'
+  kick-message: 'sent too many packets'
   limits:
     all:
       interval: 7.0
