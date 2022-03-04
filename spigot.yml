@@ -23,13 +23,15 @@ advancements:
   disabled:
   - minecraft:story/disabled
 settings:
-  log-villager-deaths: true
+  # hu ce bout villy
+  log-villager-deaths: false
   bungeecord: false
   sample-count: 12
   player-shuffle: 0
   user-cache-size: 1000
   save-user-cache-on-stop-only: false
-  moved-wrongly-threshold: 0.0625
+  # Geyser aint perfect
+  moved-wrongly-threshold: 0.08
   moved-too-quickly-multiplier: 10.0
   timeout-time: 60
   restart-on-crash: true
@@ -65,6 +67,7 @@ world-settings:
     verbose: false
     hopper-amount: 1
     dragon-death-sound-radius: 0
+    # will del after settin, those aint on the server btw
     seed-village: 10387312
     seed-desert: 14357617
     seed-igloo: 14357618
@@ -81,7 +84,8 @@ world-settings:
     seed-mansion: 10387319
     seed-fossil: 14357921
     seed-portal: 34222645
-    max-tnt-per-tick: 100
+    # yuck
+    max-tnt-per-tick: 48
     enable-zombie-pigmen-portal-spawns: true
     view-distance: default
     item-despawn-rate: 6000
@@ -90,10 +94,12 @@ world-settings:
     trident-despawn-rate: 1200
     zombie-aggressive-towards-villager: true
     nerf-spawner-mobs: false
-    mob-spawn-range: 8
+    # yep im goin low, low end serbor momento
+    mob-spawn-range: 3
     wither-spawn-sound-radius: 0
     end-portal-sound-radius: 0
-    max-entity-collisions: 8
+    # does this even work?
+    max-entity-collisions: 4
     merge-radius:
       exp: 3.0
       item: 2.5
@@ -115,28 +121,28 @@ world-settings:
       sweetberry-modifier: 100
       kelp-modifier: 100
     entity-activation-range:
-      animals: 32
-      monsters: 32
+      animals: 16
+      monsters: 28
       raiders: 48
       misc: 16
       water: 16
-      villagers: 32
+      villagers: 24
       flying-monsters: 32
       villagers-work-immunity-after: 100
       villagers-work-immunity-for: 20
       villagers-active-for-panic: true
       tick-inactive-villagers: true
       wake-up-inactive:
-        animals-max-per-tick: 4
+        animals-max-per-tick: 3
         animals-every: 1200
         animals-for: 100
-        monsters-max-per-tick: 8
+        monsters-max-per-tick: 6
         monsters-every: 400
         monsters-for: 100
-        villagers-max-per-tick: 4
+        villagers-max-per-tick: 3
         villagers-every: 600
         villagers-for: 100
-        flying-monsters-max-per-tick: 8
+        flying-monsters-max-per-tick: 5
         flying-monsters-every: 200
         flying-monsters-for: 100
     ticks-per:
@@ -150,14 +156,16 @@ world-settings:
       swim-multiplier: 0.01
       sprint-multiplier: 0.1
       other-multiplier: 0.0
+    # didnt removed this in Sustopia, may be "useful" (?) later
     max-tick-time:
-      tile: 50
-      entity: 50
+      tile: 1000
+      entity: 1000
     squid-spawn-range:
       min: 45.0
+    # :spin: // raised monsters for Sniper Duel :p
     entity-tracking-range:
-      players: 48
-      animals: 48
-      monsters: 48
+      players: 40
+      animals: 40
+      monsters: 52
       misc: 32
-      other: 64
+      other: 56
