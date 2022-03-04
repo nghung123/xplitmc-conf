@@ -1,0 +1,12 @@
+name: Build main
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [11, 8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: validate files
+      run:  curl -X POST  --data "data=$(cat *.yml)" https://www.lint-trilogy.com/lint/yaml/json
